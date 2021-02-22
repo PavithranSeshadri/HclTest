@@ -1,0 +1,78 @@
+package newwtest;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.support.FindBy;
+
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class MyStore{
+
+
+    public static void main(String[] args) {
+       		System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+    @FindBy(xpath="//a[@class="login"]")
+
+    WebElement SigninBtn;
+
+    @FindBy(xpath="//input[@id="email"]")
+
+    WebElement username;
+
+    @FindBy(xpath="//input[@id="passwd"]")
+
+    WebElement password;
+
+    @FindBy(xpath="//button[@class="button btn btn-default button-medium"]")
+
+    WebElement signin;
+    @Findy(xpath="//a[@title="T-shirts"]")
+    WebElement tshirtstab;
+  @FindBy(xpath="//img[@title="Faded Short Sleeve T-shirts"]")
+  WebElement fadedshortsleeve;
+  @FindB(xpath="//span[contains(text(),"Add to cart")]")
+  WebElement addtocart;
+  @FindBy(xpath="//*[@id="layer_cart"]//following::i[@class="icon-ok"]/..")
+   WebElement successtext;
+  @FindBy(xpath="//*[@id="layer_cart_product_title"]");
+WebElemet fadedshortstext;
+  @FindBy(xpath="//*[@id="layer_cart_product_attributes"]");
+WebElemet attributes;
+ @FindBy(xpath="//strong[@class="dark" and contains(text(),'Quantity')]");
+WebElemet qty;
+ @FindBy(xpath="//span[@id='layer_cart_product_price']");
+WebElemet total;
+    public mystoreValidaito(WebDriver driver){
+
+        this.driver = driver;
+
+        PageFactory.initElements(driver, this);
+
+    }
+        String MystoreURL= "http://Automationpractice.com/";
+       
+     
+        driver.get(MystoreURL);
+	SigninBtn.click();
+	username.click().sendKeys("");
+	password.click().sendKeys("");
+     	signin.click();
+	tshirtstab.click();
+	fadedshortsleeve.click();
+	adddtocart.click();
+	String s=successtext.getText();
+	string f=fadedshortstext.getText();
+	String a=attributes.getText();
+	String q=attributes.getText()
+	String t=attributes.getText()
+       Assert.assertTrue(s.contains("Product successfully added to your shopping cart"));
+      Assert.assertTrue(f.contains("Faded Short Sleeve T-shirts"));
+	Assert.assertTrue(a.contains("Orange, S"));
+	Assert.assertTrue(q.contains("Quantity);
+	Assert.assertTrue(t.contains("$16.51"));	
+        driver.close();
+       
+    }
+
+}
